@@ -1,5 +1,7 @@
 .DS_Store
 config/database.yml
+config/database.yml.postgres
+config/database.yml.sqlite
 config/production_settings.yml
 config/development_settings.yml
 db/*.sqlite3
