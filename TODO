@@ -1,0 +1,6 @@
+Remove duplicate README/README.rdoc
+
+Duplicate layouts application.html.erb/application.html.hamnl
+
+MIT License header on each file? Is that necessary?
+
