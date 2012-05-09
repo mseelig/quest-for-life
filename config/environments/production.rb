@@ -64,4 +64,9 @@ QuestForLife::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+
+  # Clearance
+  # raise 'You need to set HOST and DO_NOT_REPLY for Clearance in config/environments/production.rb!'
+  HOST = "quest-for-life.org"
+  DO_NOT_REPLY = "donotreply@quest-for-life.org"
 end

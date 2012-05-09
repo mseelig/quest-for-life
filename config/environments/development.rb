@@ -34,4 +34,8 @@ QuestForLife::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Clearance
+  HOST = "localhost:3000"
+  DO_NOT_REPLY = "donotreply@example.com"
 end

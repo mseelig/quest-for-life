@@ -7,9 +7,23 @@
 # Ignore bundler config
 /.bundle
 
-# Ignore the default SQLite database.
-/db/*.sqlite3
-
-# Ignore all logfiles and tempfiles.
-/log/*.log
-/tmp
+.DS_Store
+config/database.yml
+config/database.yml.postgres
+config/database.yml.sqlite
+config/production_settings.yml
+config/development_settings.yml
+db/*.sqlite3
+db/schema.rb
+db/development_structure.sql
+log/*.log
+doc/api
+doc/app
+tmp/**/
+tmp/*
+.project*
+public/stylesheets/print.css
+public/stylesheets/ie.css
+public/stylesheets/compiled
+*.tmproj
+.rvmrc

@@ -1,4 +1,39 @@
 QuestForLife::Application.routes.draw do
+
+  ActionController::Routing::Routes.draw do |map|
+  map.resources :age_groups
+
+  map.resources :survey_groups do |survey_groups|
+    survey_groups.resources :surveys
+  end
+
+
+  map.resources :surveys
+  map.with_options :controller => 'surveys' do |s|
+    s.survey_demographics '/surveys/:id/demographics', :action => :edit, :parameter => 'demographics', :requirements => { :method => :get }
+    s.survey_parameter '/surveys/:id/:parameter', :action => :edit, :requirements => { :method => :get }
+    s.equation_parameter '/equation/:parameter', :action => :edit, :requirements => { :method => :get }
+  end
+
+  map.resources :rational_options
+
+   map.resources :users do |users|
+      users.resource :password, :controller => 'clearance/passwords', :only => [:create, :edit, :update]
+      users.resource :confirmation, :controller => 'confirmations', :only => [:new, :create]
+    end
+    
+    map.open_id_complete 'session', :controller => 'sessions', :action => 'create', :requirements => { :method => :get }
+    map.resource :session, :only => [:new, :create, :destroy]
+    
+    map.with_options :controller => 'sessions'  do |m|
+      m.sign_in  '/login',  :action => 'new'
+      m.sign_out '/logout', :action => 'destroy'
+    end
+    
+    
+
+    map.root :controller => "home"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

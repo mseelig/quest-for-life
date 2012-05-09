@@ -4,3 +4,5 @@ Duplicate layouts application.html.erb/application.html.hamnl
 
 MIT License header on each file? Is that necessary?
 
+Session store secret
+

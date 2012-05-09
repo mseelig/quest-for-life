@@ -7,7 +7,21 @@ gem 'rails', '3.2.3'
 
 gem 'pg'
 
+gem 'haml'
+gem 'chriseppstein-compass', '0.8.10', :require => 'compass'
 
+gem 'mislav-will_paginate', :require => 'will_paginate'
+gem 'binarylogic-settingslogic', :require => 'settingslogic'
+gem 'justinfrench-formtastic', :require => 'formtastic'
+
+  
+gem 'thoughtbot-clearance', :require => 'clearance'
+gem 'ruby-openid', '2.1.8', :require => 'openid'
+  
+gem 'jcnetdev-better_partials', '>= 1.1', :require => 'better_partials'
+gem 'binarylogic-searchlogic', '2.2.3', :require => 'searchlogic'
+gem 'active_hash', '0.8.2', :require => 'active_hash'
+gem 'exceptional', '2.0.7'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
