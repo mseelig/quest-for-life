@@ -8,18 +8,18 @@ gem 'rails', '3.2.3'
 gem 'pg'
 
 gem 'haml'
-gem 'chriseppstein-compass', '0.8.10', :require => 'compass'
+gem 'compass' #, '0.8.10'
 
-gem 'mislav-will_paginate', :require => 'will_paginate'
-gem 'binarylogic-settingslogic', :require => 'settingslogic'
-gem 'justinfrench-formtastic', :require => 'formtastic'
+gem 'will_paginate'
+gem 'settingslogic'
+gem 'formtastic'
 
   
-gem 'thoughtbot-clearance', :require => 'clearance'
+gem 'clearance'
 gem 'ruby-openid', '2.1.8', :require => 'openid'
   
-gem 'jcnetdev-better_partials', '>= 1.1', :require => 'better_partials'
-gem 'binarylogic-searchlogic', '2.2.3', :require => 'searchlogic'
+# gem 'better_partials', '>= 1.1'
+gem 'searchlogic', '2.2.3'
 gem 'active_hash', '0.8.2', :require => 'active_hash'
 gem 'exceptional', '2.0.7'
 # Gems used only for assets and not required

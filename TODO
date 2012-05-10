@@ -6,3 +6,4 @@ MIT License header on each file? Is that necessary?
 
 Session store secret
 
+Clean commented versions, etc. out of Gemfile
