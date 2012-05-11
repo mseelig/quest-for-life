@@ -21,7 +21,7 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 
-private_file = "#{RAILS_ROOT}/config/#{RAILS_ENV}_settings.yml"
+private_file = "#{Rails.root}/config/#{Rails.env}_settings.yml"
 
 if File.exists?(private_file)
   $private_settings = Settings.new(private_file)
