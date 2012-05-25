@@ -102,4 +102,16 @@ module SurveysHelper
       return "%0.2f" % num.to_f
     end
   end
+
+  def get_chart_option_count(options_hash)
+    Survey.find(:all, :conditions => options_hash).count
+  end
+
+  def get_age_group_options
+    AgeGroup.all.collect do |group| [group.description, group.id] end
+  end
+
+  def get_gender_options
+    ['Male', 'Female', 'Unknown']
+  end
 end

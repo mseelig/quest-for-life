@@ -1,3 +1,14 @@
 
 Crowdsourcing the Drake Equation
 
+I have implemented basic functionality of the survey charts which displays data
+for each combination of parameter, age group and gender. There are a number of
+improvements that could be made:
+
+1. Use Ajax to update charts when chaging select fields. This is better implemented
+   in Rails 3 with its built-in support for UJS.
+2. Preserve age group and gender selections when changing parameters.
+3. Separating the Javascript from the html using an include.
+4. Using haml for the erb file.
+5. Highlighting user data in the charts.
+6. More unit and functional tests.

@@ -85,6 +85,16 @@ class Survey < ActiveRecord::Base
     def l_options
       RationalOption.quotient_gte(1).quotient_lte(10**6).reject{|o| Math.log10(o.quotient) % 1 != 0}
     end
+
+    def get_chart_options(parameter)
+      parameter = parameter.to_sym
+      return [(1..9), (10..99), (100..999), (1000..9999)] if (parameter == :n)
+      if ([:r_star, :l].include?(parameter))
+        options_for(parameter).map(&:numerator).sort!
+      else
+        options_for(parameter).map(&:denominator).sort!
+      end
+    end
   end
   
   belongs_to :survey_group

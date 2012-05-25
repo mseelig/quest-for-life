@@ -65,4 +65,8 @@ class SurveyTest < ActiveSupport::TestCase
     assert survey.save
     assert_equal "Male", survey.gender
   end
+
+  test "get_chart_options returns proper values" do
+    assert_equal [(1..9), (10..99), (100..999), (1000..9999)], Survey.get_chart_options('n')
+  end
 end

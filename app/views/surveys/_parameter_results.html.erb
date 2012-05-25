@@ -3,22 +3,14 @@
   <h3>How many civilizations that might communicate with us are there in our galaxy?</h3>
 	
   <label>Show age:</label>
-  <select>
+  <select id="age_group">
     <option disabled="disabled">Choose:</option>
-    <option>11 and under</option>
-    <option>12-14</option>
-    <option>15-18</option>
-    <option>19-25</option>
-    <option selected="selected">26-35</option>
-    <option>36-50</option>
-    <option>50+</option>
-    <option>Unknown</option>
+    <%= options_for_select(get_age_group_options, @age_group.id) %>
   </select>
 	
 	<div id="ages-group" style="width: 650px; height: 300px;"></div>
-
 	<table id="data-ages-group" style="display:none;">
-    <caption>Estimates by age group 26-35</caption>
+    <caption>Estimates by age group <%= @age_group.description %></caption>
     <thead>
       <tr>
         <th>Value</th>
@@ -26,37 +18,25 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th>1-9</th>
-        <td>4</td>
-      </tr>
-      <tr>
-        <th>10-99</th>
-        <td>7</td>
-      </tr>
-      <tr>
-        <th>100-999</th>
-        <td>12</td>
-      </tr>
-      <tr>
-        <th>1000-9999</th>
-        <td>7</td>
-      </tr>
+        <% @chart_options.each do |chart_option| %>
+          <tr>
+            <th><%= chart_option.to_s %></th>
+            <td><%= get_chart_option_count({@parameter=>chart_option, :age_group_id=>@age_group.id}) %></td>
+          </tr>
+        <% end %>
     </tbody>
   </table>
 
   <label>Show gender:</label>
-  <select>
+  <select id="gender">
     <option disabled="disabled">Choose:</option>
-    <option selected="selected">Male</option>
-    <option>Female</option>
-    <option>Unknown</option>
+    <%= options_for_select(get_gender_options, @gender) %>
   </select>
 
 	<div id="gender-group" style="width: 650px; height: 300px;"></div>
 
 	<table id="data-gender-group" style="display:none;">
-    <caption>Estimates for age 26-35</caption>
+    <caption>Estimates for <%= @gender %></caption>
     <thead>
       <tr>
         <th>Value</th>
@@ -64,46 +44,26 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th>1-9</th>
-        <td>4</td>
-      </tr>
-      <tr>
-        <th>10-99</th>
-        <td>7</td>
-      </tr>
-      <tr>
-        <th>100-999</th>
-        <td>12</td>
-      </tr>
-      <tr>
-        <th>1000-9999</th>
-        <td>7</td>
-      </tr>
+        <% @chart_options.each do |chart_option| %>
+          <tr>
+            <th><%= chart_option %></th>
+            <td><%= get_chart_option_count({@parameter=>chart_option, :gender=>@gender}) %></td>
+          </tr>
+        <% end %>
     </tbody>
   </table>
 
 	<div id="all" style="width: 650px; height: 300px;"></div>
 
 	<table id="data-all" style="display:none;">
-    <caption>Estimates for age 26-35</caption>
+    <caption>All Estimates</caption>
     <tbody>
-      <tr>
-        <th>1-9</th>
-        <td>410</td>
-      </tr>
-      <tr>
-        <th>10-99</th>
-        <td>713</td>
-      </tr>
-      <tr>
-        <th>100-999</th>
-        <td>1275</td>
-      </tr>
-      <tr>
-        <th>1000-9999</th>
-        <td>379</td>
-      </tr>
+        <% @chart_options.each do |chart_option| %>
+          <tr>
+            <th><%= chart_option.to_s %></th>
+            <td><%= get_chart_option_count({@parameter=>chart_option}) %></td>
+          </tr>
+        <% end %>
     </tbody>
   </table>
 
@@ -118,10 +78,10 @@ $(document).ready(function() {
 			defaultSeriesType: 'column'
 		},
 		title: {
-			text: 'Estimates by age group 26-35'
+      text: <%= ('Estimates by age group ' + @age_group.description).to_json %>
 		},
 		xAxis: {
-			categories: ['1-9', '10-99', '100-999', '1000-9999']
+      categories: <%= @chart_options.map(&:to_s).to_json %>
 		},
 		yAxis: {
 			title: {
@@ -181,10 +141,10 @@ $(document).ready(function() {
 			defaultSeriesType: 'column'
 		},
 		title: {
-			text: 'Estimates by males'
+      text: <%= ('Estimates by ' + @gender).to_json %>
 		},
 		xAxis: {
-			categories: ['1-9', '10-99', '100-999', '1000-9999']
+			categories: <%= @chart_options.map(&:to_s).to_json %>
 		},
 		yAxis: {
 			title: {
@@ -247,7 +207,7 @@ $(document).ready(function() {
 			text: 'All Estimates'
 		},
 		xAxis: {
-			categories: ['1-9', '10-99', '100-999', '1000-9999']
+			categories: <%= @chart_options.map(&:to_s).to_json %>
 		},
 		yAxis: {
 			title: {
@@ -298,4 +258,15 @@ $(document).ready(function() {
 	
 });
 
+$(document).ready(function() {
+  $('#age_group').change(function() {
+    new_url = document.location.pathname + '?p=<%= @parameter %>&gender=<%= @gender %>&age_group_id=' + this.value;
+    window.location.replace(new_url);
+  });
+
+  $('#gender').change(function() {
+    new_url = document.location.pathname + '?p=<%= @parameter %>&gender=' + this.value + '&age_group_id=<%= @age_group.id %>';
+    window.location.replace(new_url);
+  });
+});
 </script>

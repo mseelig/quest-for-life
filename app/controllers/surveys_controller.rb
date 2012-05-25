@@ -31,7 +31,10 @@ class SurveysController < ApplicationController
     belongs_to :survey_group
 
     before :index, :show do
-      @parameter = 'n' 
+      @parameter = params[:p] || 'n'
+      @age_group = AgeGroup.find_by_id(params[:age_group_id] || 1)
+      @gender = params[:gender] || 'Male'
+      @chart_options = Survey.get_chart_options(@parameter)
     end
 
     before :edit do
